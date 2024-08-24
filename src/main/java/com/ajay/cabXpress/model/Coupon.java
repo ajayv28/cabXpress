@@ -23,8 +23,7 @@ public class Coupon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    UUID couponCode;
+    UUID couponCode = UUID.randomUUID();
 
     double flatOfferPercentage;
 

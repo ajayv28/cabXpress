@@ -1,9 +1,11 @@
 package com.ajay.cabXpress.model;
 
 import com.ajay.cabXpress.Enum.BookingStatus;
+import com.ajay.cabXpress.Enum.CabType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 import java.util.UUID;
@@ -21,8 +23,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    UUID bookingId;
+    UUID bookingId = UUID.randomUUID();
 
     BookingStatus bookingStatus;
 
@@ -30,10 +31,13 @@ public class Booking {
 
     String destination;
 
-    String totalDistance;
+    double totalDistance;
 
-    String totalFare;
+    double totalFare;
 
+    CabType cabType;
+
+    @CreationTimestamp
     Date bookingDateAndTime;
 
     @ManyToOne

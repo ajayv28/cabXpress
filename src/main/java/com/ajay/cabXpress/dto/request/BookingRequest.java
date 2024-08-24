@@ -1,5 +1,6 @@
 package com.ajay.cabXpress.dto.request;
 
+import com.ajay.cabXpress.Enum.CabType;
 import jakarta.persistence.GeneratedValue;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -15,7 +16,9 @@ public class BookingRequest {
 
     String destination;
 
-    String totalDistance;
+    double totalDistance;
+
+    CabType cabType;
 
     String customerEmail;                 // as we are not using loggedIn details to book
 }

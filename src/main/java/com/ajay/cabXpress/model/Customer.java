@@ -4,6 +4,7 @@ import com.ajay.cabXpress.Enum.Gender;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class Customer {
 
     Gender gender;
 
+    @CreationTimestamp
     Date registeredOn;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)

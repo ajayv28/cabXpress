@@ -1,6 +1,7 @@
 package com.ajay.cabXpress.dto.response;
 
 import com.ajay.cabXpress.Enum.BookingStatus;
+import com.ajay.cabXpress.Enum.CabType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -22,9 +23,11 @@ public class BookingResponse {
 
     String destination;
 
-    String totalDistance;
+    double totalDistance;
 
-    String totalFare;
+    double totalFare;
+
+    CabType cabType;
 
     DriverResponse driverResponse;          //no need cabResponse, as this driverResponse itself will return cabResponse
 

@@ -1,4 +1,7 @@
 package com.ajay.cabXpress.exception;
 
-public class DriverNotFoundException {
+public class DriverNotFoundException extends RuntimeException{
+    public DriverNotFoundException(String message){
+        super(message);
+    }
 }

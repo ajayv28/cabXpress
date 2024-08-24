@@ -1,4 +1,10 @@
 package com.ajay.cabXpress.exception;
 
-public class CabNotAvailableException {
+import com.ajay.cabXpress.model.Cab;
+
+public class CabNotAvailableException extends RuntimeException{
+
+    public CabNotAvailableException(String message){
+        super(message);
+    }
 }
