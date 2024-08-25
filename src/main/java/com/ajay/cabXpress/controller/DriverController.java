@@ -24,4 +24,57 @@ public class DriverController {
         DriverResponse savedDriver = driverService.registerDriver(driverRequest);
         return new ResponseEntity(savedDriver, HttpStatus.CREATED);
     }
+
+    /*
+
+    @GetMapping
+    public ResponseEntity getAllBookingOfCurrentDriver(@RequestParam String email){
+        List<DriverResponse> response = driverService.getAllBookingOfCurrentDriver(email);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getLastNBookingOfCurrentDriver(@RequestParam String email){
+        List<DriverResponse> response = driverService.getLastNBookingOfCurrentDriver(email);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    
+    @GetMapping
+    public ResponseEntity getDriverWithMoreThanNBooking(@RequestParam int n){
+        List<DriverResponse> response = driverService.getDriverWithMoreThanNBooking(n);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getAllDriverByAgeAboveN(@RequestParam int n){
+         List<DriverResponse> response = driverService.getAllDriverByAgeAboveN(n);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getAllDriverByGender(@RequestParam Gender gender){
+         List<DriverResponse> response = driverService.getAllDriverByGender(gender);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getAllDriverByGenderAndAgeBelowN(@RequestParam Gender gender, @RequestParam int n){
+         List<DriverResponse> response = driverService.getAllDriverByGenderAndAgeBelowN(gender, n);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ReponseEntity getAllDriverWithCabRegistered(){
+        List<DriverResponse> response = driverService.getAllDriverWithCabRegistered();
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ReponseEntity getAllDriverWithNoCabRegistered(){
+        List<DriverResponse> response = driverService.getAllDriverWithNoCabRegistered();
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+    
+    */
 }
