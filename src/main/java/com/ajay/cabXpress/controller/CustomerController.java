@@ -71,8 +71,8 @@ public class CustomerController {
     }
 
     @GetMapping
-    public ResponseEntity getAllCustomerByGenderAndAge(@RequestParam Gender gender, @RequestParam int age){
-         List<CustomerResponse> response = customerService.getAllCustomerByGenderAndAge(gender, age);
+    public ResponseEntity getAllCustomerByGenderAndAgeBelowN(@RequestParam Gender gender, @RequestParam int age){
+         List<CustomerResponse> response = customerService.getAllCustomerByGenderAndAgeBelowN(gender, age);
             return new ResponseEntity(response, HttpStatus.OK);
     }
     
