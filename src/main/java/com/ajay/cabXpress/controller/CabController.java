@@ -32,4 +32,33 @@ public class CabController {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    /*
+
+    @GetMapping
+    public ResponseEntity getAllBookingOfGivenCabNo(@RequestParam String cabNo){
+        List<CabResponse> response = cabService.getAllBookingOfGivenCabNo(cabNo);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getLastNBookingOfGivenCabNo(@RequestParam String cabNo){
+        List<CabResponse> response = cabService.getLastNBookingOfGivenCabNo(cabNo);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity makeCabUnavailable(@RequestParam String cabNo){
+        CabResponse response = cabService.makeCabUnavailable(cabNo);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity changeFarePerKm(@RequestParam String cabNo, double newFarePerKm){
+        CabResponse response = cabService.changeFarePerKm(cabNo, newFarePerKm);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+
+    */
 }
