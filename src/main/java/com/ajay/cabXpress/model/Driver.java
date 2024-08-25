@@ -32,6 +32,7 @@ public class Driver {
 
     String age;
 
+    @Enumerated(EnumType.STRING)
     Gender gender;
 
     @OneToOne(mappedBy = "driver", cascade = CascadeType.ALL)

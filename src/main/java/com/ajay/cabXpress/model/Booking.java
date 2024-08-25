@@ -25,6 +25,7 @@ public class Booking {
 
     UUID bookingId = UUID.randomUUID();
 
+    @Enumerated(EnumType.STRING)
     BookingStatus bookingStatus;
 
     String pickup;
@@ -35,7 +36,9 @@ public class Booking {
 
     double totalFare;
 
+    @Enumerated(EnumType.STRING)
     CabType cabType;
+
 
     @CreationTimestamp
     Date bookingDateAndTime;

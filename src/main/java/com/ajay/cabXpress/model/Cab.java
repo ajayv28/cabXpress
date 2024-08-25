@@ -23,6 +23,7 @@ public class Cab {
 
     boolean availability;
 
+    @Enumerated(EnumType.STRING)
     CabType cabType;
 
     double farePerKm;

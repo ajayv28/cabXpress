@@ -33,6 +33,7 @@ public class Customer {
 
     String age;
 
+    @Enumerated(EnumType.STRING)
     Gender gender;
 
     @CreationTimestamp

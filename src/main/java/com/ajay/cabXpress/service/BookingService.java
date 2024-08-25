@@ -1,6 +1,7 @@
 package com.ajay.cabXpress.service;
 
 import com.ajay.cabXpress.Enum.BookingStatus;
+import com.ajay.cabXpress.Enum.CabType;
 import com.ajay.cabXpress.dto.request.BookingRequest;
 import com.ajay.cabXpress.dto.response.BookingResponse;
 import com.ajay.cabXpress.exception.CabNotAvailableException;
@@ -16,6 +17,10 @@ import com.ajay.cabXpress.repository.DriverRepository;
 import com.ajay.cabXpress.transformer.BookingTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class BookingService {
@@ -48,6 +53,7 @@ public class BookingService {
         newBooking.setBookingStatus(BookingStatus.CONFIRMED);
         newBooking.setTotalFare(newBooking.getTotalDistance()*availableCab.getFarePerKm());
 
+
         Driver currDriver = availableCab.getDriver();
         newBooking.setDriver(currDriver);
         newBooking.setCustomer(currCustomer);
@@ -67,5 +73,70 @@ public class BookingService {
 
 
 
+    }
+
+    public List<BookingResponse> getLastNBooking(int n) {
+
+        List<Booking> booking = bookingRepository.getLastNBooking(n);
+        List<BookingResponse> response = new ArrayList<>();
+
+        for(Booking currBooking : booking){
+            response.add(BookingTransformer.bookingToBookingResponse(currBooking));
+        }
+
+        return response;
+    }
+
+    public List<BookingResponse> getBookingWithTotalFareGreaterThanX(float x) {
+
+        List<Booking> booking = bookingRepository.getBookingWithTotalFareGreaterThanX(x);
+        List<BookingResponse> response = new ArrayList<>();
+
+        for(Booking currBooking : booking){
+            response.add(BookingTransformer.bookingToBookingResponse(currBooking));
+        }
+
+        return response;
+    }
+
+    public BookingResponse getBookingDetailWithBookingId(UUID bookingId) {
+        Booking booking = bookingRepository.getBookingDetailWithBookingId(bookingId);
+        return BookingTransformer.bookingToBookingResponse(booking);
+    }
+
+    public List<BookingResponse> getAllCancelledBooking() {
+
+        List<Booking> booking = bookingRepository.getAllCancelledBooking();
+        List<BookingResponse> response = new ArrayList<>();
+
+        for(Booking currBooking : booking){
+            response.add(BookingTransformer.bookingToBookingResponse(currBooking));
+        }
+
+        return response;
+    }
+
+    public List<BookingResponse> getBookingWithTotalDistanceGreaterThanX(double x) {
+
+        List<Booking> booking = bookingRepository.getBookingWithTotalDistanceGreaterThanX(x);
+        List<BookingResponse> response = new ArrayList<>();
+
+        for(Booking currBooking : booking){
+            response.add(BookingTransformer.bookingToBookingResponse(currBooking));
+        }
+
+        return response;
+    }
+
+    public List<BookingResponse> getBookingWithGivenCabType(CabType cabType) {
+
+        List<Booking> booking = bookingRepository.getBookingWithGivenCabType(cabType);
+        List<BookingResponse> response = new ArrayList<>();
+
+        for(Booking currBooking : booking){
+            response.add(BookingTransformer.bookingToBookingResponse(currBooking));
+        }
+
+        return response;
     }
 }

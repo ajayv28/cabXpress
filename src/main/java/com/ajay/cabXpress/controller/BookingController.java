@@ -1,5 +1,6 @@
 package com.ajay.cabXpress.controller;
 
+import com.ajay.cabXpress.Enum.CabType;
 import com.ajay.cabXpress.dto.request.BookingRequest;
 import com.ajay.cabXpress.dto.response.BookingResponse;
 import com.ajay.cabXpress.exception.CabNotAvailableException;
@@ -8,9 +9,11 @@ import com.ajay.cabXpress.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/booking")
@@ -33,9 +36,6 @@ public class BookingController {
         }
     }
 
-    /*
-
-    import java.sql.date;
     
     @GetMapping
     public ResponseEntity getLastNBooking(@RequestParam int n){
@@ -62,7 +62,7 @@ public class BookingController {
     }
 
     @GetMapping
-    public ResponseEntity getBookingWithTotalDistanceGreaterThanX(@RequestParam int x){
+    public ResponseEntity getBookingWithTotalDistanceGreaterThanX(@RequestParam double x){
         List<BookingResponse> response = bookingService.getBookingWithTotalDistanceGreaterThanX(x);
             return new ResponseEntity(response, HttpStatus.OK);
     }
@@ -80,11 +80,11 @@ public class BookingController {
     }
 
     @GetMapping
-    public ResponseEntity getBookingBetweenGivenDates(@RequestParam Date fromDate, @RequestParam Date toDate,){
+    public ResponseEntity getBookingBetweenGivenDates(@RequestParam Date fromDate, @RequestParam Date toDate){
         List<BookingResponse> response = bookingService.getBookingBetweenGivenDates(fromDate, toDate);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
     
-    */
+
 }
