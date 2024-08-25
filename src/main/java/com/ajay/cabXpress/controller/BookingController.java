@@ -32,4 +32,59 @@ public class BookingController {
             return new ResponseEntity(cabNotAvailableException.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    /*
+
+    import java.sql.date;
+    
+    @GetMapping
+    public ResponseEntity getLastNBooking(@RequestParam int n){
+        List<BookingResponse> response = bookingService.getLastNBooking(n);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getBookingWithTotalFareGreaterThanX(@RequestParam float x){
+        List<BookingResponse> response = bookingService.getBookingWithTotalFareGreaterThanX(x);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getBookingDetailWithBookingId(@RequestParam UUID bookingId){
+        BookingResponse response = bookingService.getBookingDetailWithBookingId(bookingId);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getAllCancelledBooking(){
+        List<BookingResponse> response = bookingService.getAllCancelledBooking();
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getBookingWithTotalDistanceGreaterThanX(@RequestParam int x){
+        List<BookingResponse> response = bookingService.getBookingWithTotalDistanceGreaterThanX(x);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getBookingWithGivenCabType(@RequestParam CabType cabType){
+        List<BookingResponse> response = bookingService.getBookingWithGivenCabType(cabType);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getBookingAfterGivenDate(@RequestParam Date date){
+        List<BookingResponse> response = bookingService.getBookingAfterGivenDate(date);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getBookingBetweenGivenDates(@RequestParam Date fromDate, @RequestParam Date toDate,){
+        List<BookingResponse> response = bookingService.getBookingBetweenGivenDates(fromDate, toDate);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    
+    */
 }
