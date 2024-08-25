@@ -32,9 +32,17 @@ public class CustomerController {
 
     /*
 
+    import java.sql.date;
+
     @GetMapping
-    public ResponseEntity getAllBookingOfCurrentCustomer(@RequestParam long mobileNumber){
-        List<CustomerResponse> response = customerService.getAllBookingOfCurrentCustomer(mobileNumber);
+    public ResponseEntity getAllBookingOfCurrentCustomer(@RequestParam String email){
+        List<CustomerResponse> response = customerService.getAllBookingOfCurrentCustomer(email);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getLastNBookingOfCurrentCustomer(@RequestParam String email){
+        List<CustomerResponse> response = customerService.getLastNBookingOfCurrentCustomer(email);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
