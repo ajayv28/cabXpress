@@ -26,12 +26,12 @@ public class CabController {
 
         try {
             CabResponse savedCab = cabService.registerCab(cabRequest);
-   git          return new ResponseEntity(savedCab, HttpStatus.CREATED);
+             return new ResponseEntity(savedCab, HttpStatus.CREATED);
         }catch(Exception e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-
+/*
     @GetMapping
     public ResponseEntity getAllBookingOfGivenCabNo(@RequestParam String cabNo){
         List<CabResponse> response = cabService.getAllBookingOfGivenCabNo(cabNo);
@@ -44,13 +44,15 @@ public class CabController {
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @PutMapping
+
+ */
+    @PutMapping("/make-unavailable")
     public ResponseEntity makeCabUnavailable(@RequestParam String cabNo){
         CabResponse response = cabService.makeCabUnavailable(cabNo);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @PutMapping
+    @PutMapping("/change-fare")
     public ResponseEntity changeFarePerKm(@RequestParam String cabNo, double newFarePerKm){
         CabResponse response = cabService.changeFarePerKm(cabNo, newFarePerKm);
             return new ResponseEntity(response, HttpStatus.OK);

@@ -37,42 +37,43 @@ public class BookingController {
     }
 
     
-    @GetMapping
+    @GetMapping("/n-booking")
     public ResponseEntity getLastNBooking(@RequestParam int n){
         List<BookingResponse> response = bookingService.getLastNBooking(n);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/total-fare")
     public ResponseEntity getBookingWithTotalFareGreaterThanX(@RequestParam float x){
         List<BookingResponse> response = bookingService.getBookingWithTotalFareGreaterThanX(x);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/booking-id")
     public ResponseEntity getBookingDetailWithBookingId(@RequestParam UUID bookingId){
         BookingResponse response = bookingService.getBookingDetailWithBookingId(bookingId);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/cancelled-booking")
     public ResponseEntity getAllCancelledBooking(){
         List<BookingResponse> response = bookingService.getAllCancelledBooking();
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity getBookingWithTotalDistanceGreaterThanX(@RequestParam double x){
-        List<BookingResponse> response = bookingService.getBookingWithTotalDistanceGreaterThanX(x);
+    @GetMapping("/distance")
+    public ResponseEntity getBookingWithTotalDistanceGreaterThanY(@RequestParam double y){
+        List<BookingResponse> response = bookingService.getBookingWithTotalDistanceGreaterThanX(y);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/cab-type")
     public ResponseEntity getBookingWithGivenCabType(@RequestParam CabType cabType){
         List<BookingResponse> response = bookingService.getBookingWithGivenCabType(cabType);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
+    /*
     @GetMapping
     public ResponseEntity getBookingAfterGivenDate(@RequestParam Date date){
         List<BookingResponse> response = bookingService.getBookingAfterGivenDate(date);
@@ -85,6 +86,8 @@ public class BookingController {
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
+
+     */
     
 
 }

@@ -31,6 +31,7 @@ public class CustomerController {
 
     }
 
+    /*
     @GetMapping
     public ResponseEntity getAllBookingOfCurrentCustomer(@RequestParam String email){
         List<CustomerResponse> response = customerService.getAllBookingOfCurrentCustomer(email);
@@ -43,31 +44,32 @@ public class CustomerController {
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping
+    */
+    @GetMapping("/registered-date")
     public ResponseEntity getAllCustomerRegisteredAfterSpecificDate(@RequestParam Date date){
         List<CustomerResponse> response = customerService.getAllCustomerRegisteredAfterSpecificDate(date);
             return new ResponseEntity(response, HttpStatus.OK);
     }
     
-    @GetMapping
+    @GetMapping("/n-booking")
     public ResponseEntity getCustomerWithMoreThanNBooking(@RequestParam int n){
         List<CustomerResponse> response = customerService.getCustomerWithMoreThanNBooking(n);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/age-above")
     public ResponseEntity getAllCustomerByAgeAboveN(@RequestParam int age){
          List<CustomerResponse> response = customerService.getAllCustomerByAgeAboveN(age);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/gender")
     public ResponseEntity getAllCustomerByGender(@RequestParam Gender gender){
          List<CustomerResponse> response = customerService.getAllCustomerByGender(gender);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/gender-age")
     public ResponseEntity getAllCustomerByGenderAndAgeBelowN(@RequestParam Gender gender, @RequestParam int age){
          List<CustomerResponse> response = customerService.getAllCustomerByGenderAndAgeBelowN(gender, age);
             return new ResponseEntity(response, HttpStatus.OK);
