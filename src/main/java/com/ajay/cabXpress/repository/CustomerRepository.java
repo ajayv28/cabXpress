@@ -16,19 +16,18 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
    /* @Query(value="select * from booking where customer in (select * from customer where id =:id)", nativeQuery=true)
     public List<Booking> getAllBookingOfCurrentCustomer(int id)
 
-    create customer id in booking */
-
-    /*
+    create customer id in booking 
+    
+    @Query(value="select * from customer where id in (select id from booking group by id having count(*) >= 5 )", nativeQuery=true)
+    public List<Customer> getCustomerWithMoreThanNBooking(int n);
+    
     @Query(value="", nativeQuery=true)
     public List<Customer> getLastNBookingOfCurrentCustomer(int id)
     create customer id in booking */
     
-    @Query(value="select * from customer where registeredOn >=:date", nativeQuery=true)
+    @Query(value="select * from customer where registered_on >=:date", nativeQuery=true)
     public List<Customer> getAllCustomerRegisteredAfterSpecificDate(Date date);
     
-    @Query(value="select * from customer where id in (select id from booking group by id having count(*) >= 5 )", nativeQuery=true)
-    public List<Customer> getCustomerWithMoreThanNBooking(int n);
-
     @Query(value="select * from customer where age >= :n", nativeQuery=true)
     public List<Customer> getAllCustomerByAgeAboveN(int n);
 
