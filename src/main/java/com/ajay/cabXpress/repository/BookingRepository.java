@@ -38,4 +38,32 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
     @Query(value="select * from booking where booking_date_and_time between :fromDate and :toDate", nativeQuery=true)
     public List<Booking> getBookingBetweenGivenDates(Date fromDate, Date toDate);
     // need to convert util to sql format
+
+
+
+    @Query(value="select * from booking where driver_id =:driver_id", nativeQuery=true)
+    public List<Booking> getAllBookingOfCurrentDriver(int driver_id);
+
+    @Query(value="select * from booking group by driver_id having driver_id =:driver_id order by desc limit :n", nativeQuery=true)
+    public List<Booking> getLastNBookingOfCurrentDriver(int driver_id, int n);
+
+    
+
+    //shift to driver repo
+    @Query(value="select * from driver where id in(select driver_id from booking group by driver_id having count(*) >=:n)", nativeQuery=true)
+    public List<Driver> getDriverWithMoreThanNBooking(int n)
+
+
+    
+    @Query(value="select * from booking where customer_id =:customer_id", nativeQuery=true)
+    public List<Booking> getAllBookingOfCurrentCustomer(int customer_id);
+
+    @Query(value="select * from booking group by customer_id having customer_id =:customer_id order by desc limit :n", nativeQuery=true)
+    public List<Booking> getLastNBookingOfCurrentCustomer(int customer_id, int n);
+
+    @Query(value="select * from booking where driver_id in (select driver_id from cab where cab_no =: cabNo)", nativeQuery = true)
+    public List<Booking> getAllBookingOfGivenCabNo(String cabNo);
+    
+    @Query(value="select * from booking where driver_id in (select driver_id from cab where cab_no =: cabNo) order by id desc limit :n ", nativeQuery = true)
+    public List<Booking> getLastNBookingOfGivenCabNo(String cabNo, int n);
 }
