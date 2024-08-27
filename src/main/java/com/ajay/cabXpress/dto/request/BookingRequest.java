@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,6 +19,8 @@ public class BookingRequest {
     String destination;
 
     double totalDistance;
+
+    String couponCode;
 
     CabType cabType;
 

@@ -1,6 +1,7 @@
 package com.ajay.cabXpress.model;
 
 import com.ajay.cabXpress.Enum.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -40,6 +41,7 @@ public class Customer {
     Date registeredOn;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @JsonIgnore
     List<Booking> bookings = new ArrayList<>();
 
 

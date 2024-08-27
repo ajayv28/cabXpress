@@ -13,6 +13,8 @@ public interface DriverRepository extends JpaRepository<Driver, Integer> {
 
     public Driver findByMobileNumber(long mobileNumber);
 
+    public Driver findByEmail(String email);
+
     @Query(value="select * from driver where age >=:n", nativeQuery=true)
     public List<Driver> getAllDriverByAgeAboveN(int n);
 
@@ -29,5 +31,6 @@ public interface DriverRepository extends JpaRepository<Driver, Integer> {
     @Query(value="select * from driver where id in (select driver_id from cab where driver_id = null)", nativeQuery=true)
     public List<Driver> getAllDriverWithNoCabRegistered();
 
-    
+    @Query(value="select * from driver where id in(select driver_id from booking group by driver_id having count(*) >=:n)", nativeQuery=true)
+    public List<Driver> getDriverWithMoreThanNBooking(int n);
 }

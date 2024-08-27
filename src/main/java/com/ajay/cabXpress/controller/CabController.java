@@ -1,7 +1,10 @@
 package com.ajay.cabXpress.controller;
 
 import com.ajay.cabXpress.dto.request.CabRequest;
+import com.ajay.cabXpress.dto.response.BookingResponse;
 import com.ajay.cabXpress.dto.response.CabResponse;
+import com.ajay.cabXpress.exception.DriverNotFoundException;
+import com.ajay.cabXpress.model.Cab;
 import com.ajay.cabXpress.service.CabService;
 import com.ajay.cabXpress.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,31 +24,33 @@ public class CabController {
     @Autowired
     DriverService driverService;
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity registerCab(@RequestBody CabRequest cabRequest){
 
         try {
             CabResponse savedCab = cabService.registerCab(cabRequest);
              return new ResponseEntity(savedCab, HttpStatus.CREATED);
+       }catch(DriverNotFoundException de){
+            return new ResponseEntity(de.getMessage(), HttpStatus.BAD_REQUEST);
         }catch(Exception e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-/*
-    @GetMapping
+
+    @GetMapping("all-booking")
     public ResponseEntity getAllBookingOfGivenCabNo(@RequestParam String cabNo){
-        List<CabResponse> response = cabService.getAllBookingOfGivenCabNo(cabNo);
+        List<BookingResponse> response = cabService.getAllBookingOfGivenCabNo(cabNo);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity getLastNBookingOfGivenCabNo(@RequestParam String cabNo){
-        List<CabResponse> response = cabService.getLastNBookingOfGivenCabNo(cabNo);
+    @GetMapping("/last-n-booking")
+    public ResponseEntity getLastNBookingOfGivenCabNo(@RequestParam String cabNo, int n){
+        List<BookingResponse> response = cabService.getLastNBookingOfGivenCabNo(cabNo,n);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
 
- */
+
     @PutMapping("/make-unavailable")
     public ResponseEntity makeCabUnavailable(@RequestParam String cabNo){
         CabResponse response = cabService.makeCabUnavailable(cabNo);

@@ -1,6 +1,7 @@
 package com.ajay.cabXpress.dto.response;
 
 import com.ajay.cabXpress.Enum.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

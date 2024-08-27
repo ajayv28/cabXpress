@@ -2,9 +2,13 @@ package com.ajay.cabXpress.service;
 
 import com.ajay.cabXpress.Enum.Gender;
 import com.ajay.cabXpress.dto.request.CustomerRequest;
+import com.ajay.cabXpress.dto.response.BookingResponse;
 import com.ajay.cabXpress.dto.response.CustomerResponse;
+import com.ajay.cabXpress.model.Booking;
 import com.ajay.cabXpress.model.Customer;
+import com.ajay.cabXpress.repository.BookingRepository;
 import com.ajay.cabXpress.repository.CustomerRepository;
+import com.ajay.cabXpress.transformer.BookingTransformer;
 import com.ajay.cabXpress.transformer.CustomerTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +22,9 @@ public class CustomerService {
 
     @Autowired
     CustomerRepository customerRepository;
+
+    @Autowired
+    BookingRepository bookingRepository;
 
     public CustomerResponse registerCustomer(CustomerRequest customerRequest) {
 
@@ -37,8 +44,8 @@ public class CustomerService {
         return response;
     }
 
-    public List<CustomerResponse> getCustomerWithMoreThanNBooking(int n) {
-        List<Customer> customer = customerRepository.getCustomerWithMoreThanNBooking(n);
+    public List<CustomerResponse> getAllCustomerWithMoreThanNBooking(int n) {
+        List<Customer> customer = customerRepository.getAllCustomerWithMoreThanNBooking(n);
         List<CustomerResponse> response = new ArrayList<>();
 
         for(Customer currCustomer: customer){
@@ -78,6 +85,28 @@ public class CustomerService {
             response.add(CustomerTransformer.customerToCustomerResponse(currCustomer));
         }
 
+        return response;
+    }
+
+    public List<BookingResponse> getAllBookingOfCurrentCustomer(String email) {
+        int customerId = customerRepository.findByEmail(email).getId();
+        List<Booking> bookings = bookingRepository.getAllBookingOfCurrentCustomer(customerId);
+        List<BookingResponse> response = new ArrayList<>();
+
+        for(Booking booking:bookings){
+            response.add(BookingTransformer.bookingToBookingResponse(booking));
+        }
+        return response;
+    }
+
+    public List<BookingResponse> getLastNBookingOfCurrentCustomer(String email, int n) {
+        int customerId = customerRepository.findByEmail(email).getId();
+        List<Booking> bookings = bookingRepository.getLastNBookingOfCurrentCustomer(customerId, n);
+        List<BookingResponse> response = new ArrayList<>();
+
+        for(Booking booking:bookings){
+            response.add(BookingTransformer.bookingToBookingResponse(booking));
+        }
         return response;
     }
 }

@@ -15,7 +15,7 @@ public class CabRequest {
 
     CabType cabType;
 
-    double farPerKm;
+    double farePerKm;
 
-    long driverMobile;
+    String driverEmail;
 }

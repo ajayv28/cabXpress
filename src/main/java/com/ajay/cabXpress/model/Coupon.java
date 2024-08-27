@@ -1,9 +1,6 @@
 package com.ajay.cabXpress.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jdk.jfr.Enabled;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -23,7 +20,7 @@ public class Coupon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    UUID couponCode = UUID.randomUUID();
+    String couponCode;
 
     double flatOfferPercentage;
 

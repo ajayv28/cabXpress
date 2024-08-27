@@ -5,6 +5,7 @@ import com.ajay.cabXpress.dto.request.BookingRequest;
 import com.ajay.cabXpress.dto.response.BookingResponse;
 import com.ajay.cabXpress.exception.CabNotAvailableException;
 import com.ajay.cabXpress.exception.CustomerNotFoundException;
+import com.ajay.cabXpress.model.Booking;
 import com.ajay.cabXpress.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +23,8 @@ public class BookingController {
     @Autowired
     BookingService bookingService;
 
-    @PostMapping
-    public ResponseEntity createBooking(BookingRequest bookingRequest) {
+    @PostMapping("/register")
+    public ResponseEntity createBooking(@RequestBody BookingRequest bookingRequest) {
 
         try {
             BookingResponse savedBooking = bookingService.createBooking(bookingRequest);
@@ -73,21 +74,21 @@ public class BookingController {
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    /*
-    @GetMapping
+
+    @GetMapping("/after-date")
     public ResponseEntity getBookingAfterGivenDate(@RequestParam Date date){
         List<BookingResponse> response = bookingService.getBookingAfterGivenDate(date);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/between-dates")
     public ResponseEntity getBookingBetweenGivenDates(@RequestParam Date fromDate, @RequestParam Date toDate){
         List<BookingResponse> response = bookingService.getBookingBetweenGivenDates(fromDate, toDate);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
 
-     */
+
     
 
 }

@@ -11,19 +11,12 @@ import java.util.List;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
+
+    @Query(value="select * from customer where mobile_number =:mobileNumber", nativeQuery=true)
+    public Customer findByMobileNumber(long mobileNumber);
+
+
     public Customer findByEmail(String email);
-
-   /* @Query(value="select * from booking where customer in (select * from customer where id =:id)", nativeQuery=true)
-    public List<Booking> getAllBookingOfCurrentCustomer(int id)
-
-    create customer id in booking 
-    
-    @Query(value="select * from customer where id in (select id from booking group by id having count(*) >= 5 )", nativeQuery=true)
-    public List<Customer> getCustomerWithMoreThanNBooking(int n);
-    
-    @Query(value="", nativeQuery=true)
-    public List<Customer> getLastNBookingOfCurrentCustomer(int id)
-    create customer id in booking */
     
     @Query(value="select * from customer where registered_on >=:date", nativeQuery=true)
     public List<Customer> getAllCustomerRegisteredAfterSpecificDate(Date date);
@@ -36,5 +29,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Query(value="select * from customer where gender =:gender and age <=:n", nativeQuery=true)
     public List<Customer> getAllCustomerByGenderAgeBelowN(Gender gender, int n);
 
-    
+    @Query(value = "select * from customer where customer_id in (select customer_id from booking group by customer_id having count(*) >=:n)", nativeQuery = true)
+    public List<Customer> getAllCustomerWithMoreThanNBooking(int n);
 }

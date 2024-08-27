@@ -1,6 +1,7 @@
 package com.ajay.cabXpress.dto.response;
 
 import com.ajay.cabXpress.Enum.CabType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -18,5 +19,4 @@ public class CabResponse {
 
     double farePerKm;
 
-    DriverResponse driverResponse;
 }

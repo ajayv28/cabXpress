@@ -13,7 +13,7 @@ import java.util.UUID;
 @Builder
 public class CouponResponse {
 
-    UUID couponCode;
+    String couponCode;
 
     double flatOfferPercentage;
 

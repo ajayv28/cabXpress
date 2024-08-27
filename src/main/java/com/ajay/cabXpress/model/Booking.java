@@ -2,6 +2,7 @@ package com.ajay.cabXpress.model;
 
 import com.ajay.cabXpress.Enum.BookingStatus;
 import com.ajay.cabXpress.Enum.CabType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -23,7 +24,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    UUID bookingId = UUID.randomUUID();
+    String bookingId;
 
     @Enumerated(EnumType.STRING)
     BookingStatus bookingStatus;
@@ -33,6 +34,8 @@ public class Booking {
     String destination;
 
     double totalDistance;
+
+    String couponCode;
 
     double totalFare;
 
@@ -45,10 +48,12 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     Customer customer;
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     Driver driver;
 
 }

@@ -15,7 +15,7 @@ import java.util.UUID;
 @Builder
 public class BookingResponse {
 
-    UUID bookingId;
+    String bookingId;
 
     BookingStatus bookingStatus;
 
@@ -27,8 +27,10 @@ public class BookingResponse {
 
     double totalFare;
 
-    CabType cabType;
+    String couponCode;
 
-    DriverResponse driverResponse;          //no need cabResponse, as this driverResponse itself will return cabResponse
+    DriverResponse driverResponse;
+
+    CabResponse cabResponse;   //need cabResponse, as this driverResponse itself will not return cabResponse
 
 }

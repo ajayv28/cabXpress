@@ -1,6 +1,7 @@
 package com.ajay.cabXpress.model;
 
 import com.ajay.cabXpress.Enum.CabType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -29,7 +30,8 @@ public class Cab {
     double farePerKm;
 
     @OneToOne
-    @JoinColumn
+    @JoinColumn(name = "driver_id")
+    @JsonIgnore
     Driver driver;
 
 }
