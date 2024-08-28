@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cab")
+@RequestMapping("/api/driver/cab")
 public class CabController {
 
     @Autowired

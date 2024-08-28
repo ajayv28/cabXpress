@@ -30,6 +30,10 @@ public class Customer {
     @Column(unique = true, nullable = false)
     String email;
 
+    String password;
+
+    String role;
+
     String name;
 
     String age;

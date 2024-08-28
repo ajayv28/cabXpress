@@ -3,8 +3,12 @@ package com.ajay.cabXpress.transformer;
 import com.ajay.cabXpress.dto.request.DriverRequest;
 import com.ajay.cabXpress.dto.response.DriverResponse;
 import com.ajay.cabXpress.model.Driver;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class DriverTransformer {
+
+    private static PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public static Driver driverRequestToDriver(DriverRequest driverRequest){
         return Driver.builder()
@@ -13,6 +17,8 @@ public class DriverTransformer {
                 .age(driverRequest.getAge())
                 .gender(driverRequest.getGender())
                 .email(driverRequest.getEmail())
+                .password(passwordEncoder.encode(driverRequest.getPassword()))
+                .role("DRIVER")
                 .build();
     }
 
