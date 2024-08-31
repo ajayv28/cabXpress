@@ -18,7 +18,7 @@ public class CustomerTransformer {
                 .gender(customerRequest.getGender())
                 .email(customerRequest.getEmail())
                 .password(passwordEncoder.encode(customerRequest.getPassword()))
-                .role("CUSTOMER")
+                .role("ROLE_CUSTOMER")
                 .build();
     }
 

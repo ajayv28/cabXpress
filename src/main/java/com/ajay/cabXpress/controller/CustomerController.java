@@ -24,15 +24,6 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @PostMapping("/register")
-    public ResponseEntity registerCustomer(@RequestBody CustomerRequest customerRequest){
-
-        CustomerResponse savedCustomer = customerService.registerCustomer(customerRequest);
-
-        return new ResponseEntity(savedCustomer, HttpStatus.CREATED);
-
-    }
-
 
     @GetMapping("/all-booking")
     public ResponseEntity getAllBookingOfCurrentCustomer(@RequestParam String email){
@@ -45,37 +36,5 @@ public class CustomerController {
         List<BookingResponse> response = customerService.getLastNBookingOfCurrentCustomer(email, n);
             return new ResponseEntity(response, HttpStatus.OK);
     }
-
-
-    @GetMapping("/registered-date")
-    public ResponseEntity getAllCustomerRegisteredAfterSpecificDate(@RequestParam Date date){
-        List<CustomerResponse> response = customerService.getAllCustomerRegisteredAfterSpecificDate(date);
-            return new ResponseEntity(response, HttpStatus.OK);
-    }
-    
-    @GetMapping("/more-than-n-booking")
-    public ResponseEntity getAllCustomerWithMoreThanNBooking(@RequestParam int n){
-        List<CustomerResponse> response = customerService.getAllCustomerWithMoreThanNBooking(n);
-            return new ResponseEntity(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/age-above")
-    public ResponseEntity getAllCustomerByAgeAboveN(@RequestParam int age){
-         List<CustomerResponse> response = customerService.getAllCustomerByAgeAboveN(age);
-            return new ResponseEntity(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/gender")
-    public ResponseEntity getAllCustomerByGender(@RequestParam Gender gender){
-         List<CustomerResponse> response = customerService.getAllCustomerByGender(gender);
-            return new ResponseEntity(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/gender-age")
-    public ResponseEntity getAllCustomerByGenderAndAgeBelowN(@RequestParam Gender gender, @RequestParam int age){
-         List<CustomerResponse> response = customerService.getAllCustomerByGenderAndAgeBelowN(gender, age);
-            return new ResponseEntity(response, HttpStatus.OK);
-    }
-    
 
 }

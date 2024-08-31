@@ -1,5 +1,6 @@
-package com.ajay.cabXpress.configuration;
+package com.ajay.cabXpress.config;
 
+import com.ajay.cabXpress.config.UserDetailsCreator;
 import com.ajay.cabXpress.model.Customer;
 import com.ajay.cabXpress.model.Driver;
 import com.ajay.cabXpress.repository.CustomerRepository;

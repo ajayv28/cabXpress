@@ -87,4 +87,14 @@ public class CabService {
 
         return response;
     }
+
+    public CabResponse endTrip(String cabNo) {
+        Cab currCab = cabRepository.findByCabNo(cabNo);
+        Driver currDriver = currCab.getDriver();
+
+        currCab.setAvailability(true);
+        Driver savedDriver = driverRepository.save(currDriver);     //this will save in cab also
+
+        return CabTransformer.cabToCabResponse(savedDriver.getCab());
+    }
 }

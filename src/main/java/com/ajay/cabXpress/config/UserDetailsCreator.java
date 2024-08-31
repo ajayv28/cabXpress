@@ -1,4 +1,4 @@
-package com.ajay.cabXpress.configuration;
+package com.ajay.cabXpress.config;
 
 import com.ajay.cabXpress.model.Customer;
 import com.ajay.cabXpress.model.Driver;
@@ -27,7 +27,8 @@ public class UserDetailsCreator implements UserDetails {
             String roles[] = customer.getRole().split(",");
 
             for(String role : roles){
-                authorities.add(new SimpleGrantedAuthority(role));
+                SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(role);
+                authorities.add(simpleGrantedAuthority);
             }
 
         }else if(object instanceof Driver){
@@ -38,9 +39,11 @@ public class UserDetailsCreator implements UserDetails {
             String roles[] = driver.getRole().split(",");
 
             for(String role : roles){
-                authorities.add(new SimpleGrantedAuthority(role));
+                SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(role);
+                authorities.add(simpleGrantedAuthority);
             }
         }
+
     }
 
     @Override

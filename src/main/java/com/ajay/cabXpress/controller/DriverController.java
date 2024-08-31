@@ -20,12 +20,6 @@ public class DriverController {
     @Autowired
     DriverService driverService;
 
-    @PostMapping("/register")
-    public ResponseEntity registerDriver(@RequestBody DriverRequest driverRequest){
-        DriverResponse savedDriver = driverService.registerDriver(driverRequest);
-        return new ResponseEntity(savedDriver, HttpStatus.CREATED);
-    }
-
 
     @GetMapping("/all-booking")
     public ResponseEntity getAllBookingOfCurrentDriver(@RequestParam String email){
@@ -40,44 +34,7 @@ public class DriverController {
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    
-    @GetMapping("/morethan-n-booking")
-    public ResponseEntity getDriverWithMoreThanNBooking(@RequestParam int n){
-        List<DriverResponse> response = driverService.getDriverWithMoreThanNBooking(n);
-            return new ResponseEntity(response, HttpStatus.OK);
-    }
 
-
-    @GetMapping("/age")
-    public ResponseEntity getAllDriverByAgeAboveN(@RequestParam int n){
-         List<DriverResponse> response = driverService.getAllDriverByAgeAboveN(n);
-            return new ResponseEntity(response, HttpStatus.OK);
-    }
-
-
-    @GetMapping("/gender")
-    public ResponseEntity getAllDriverByGender(@RequestParam Gender gender){
-         List<DriverResponse> response = driverService.getAllDriverByGender(gender);
-            return new ResponseEntity(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/gender-age")
-    public ResponseEntity getAllDriverByGenderAndAgeBelowN(@RequestParam Gender gender, @RequestParam int n){
-         List<DriverResponse> response = driverService.getAllDriverByGenderAndAgeBelowN(gender, n);
-            return new ResponseEntity(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/cab-registered")
-    public ResponseEntity getAllDriverWithCabRegistered(){
-        List<DriverResponse> response = driverService.getAllDriverWithCabRegistered();
-            return new ResponseEntity(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/cab-not-registered")
-    public ResponseEntity getAllDriverWithNoCabRegistered(){
-        List<DriverResponse> response = driverService.getAllDriverWithNoCabRegistered();
-            return new ResponseEntity(response, HttpStatus.OK);
-    }
     
 
 }

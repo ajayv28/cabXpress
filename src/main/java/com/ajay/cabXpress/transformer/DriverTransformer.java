@@ -18,7 +18,7 @@ public class DriverTransformer {
                 .gender(driverRequest.getGender())
                 .email(driverRequest.getEmail())
                 .password(passwordEncoder.encode(driverRequest.getPassword()))
-                .role("DRIVER")
+                .role("ROLE_DRIVER")
                 .build();
     }
 
