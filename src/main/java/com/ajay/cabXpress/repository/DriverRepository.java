@@ -19,16 +19,16 @@ public interface DriverRepository extends JpaRepository<Driver, Integer> {
     public List<Driver> getAllDriverByAgeAboveN(int n);
 
     @Query(value="select * from driver where gender =:gender", nativeQuery=true)
-    public List<Driver> getAllDriverByGender(Gender gender);
+    public List<Driver> getAllDriverByGender(String gender);
 
     @Query(value="select * from driver where gender =:gender and age <=:n", nativeQuery=true)
-    public List<Driver> getAllDriverByGenderAndAgeBelowN(Gender gender, int n);
+    public List<Driver> getAllDriverByGenderAndAgeBelowN(String gender, int n);
 
     
-    @Query(value="select * from driver where id in (select driver_id from cab where driver_id <> null)", nativeQuery=true)
+    @Query(value="select * from driver where id in (select driver_id from cab where driver_id IS NOT null)", nativeQuery=true)
     public List<Driver> getAllDriverWithCabRegistered();
 
-    @Query(value="select * from driver where id in (select driver_id from cab where driver_id = null)", nativeQuery=true)
+    @Query(value="select * from driver where id not in (select driver_id from cab where driver_id IS NOT null)", nativeQuery=true)
     public List<Driver> getAllDriverWithNoCabRegistered();
 
     @Query(value="select * from driver where id in(select driver_id from booking group by driver_id having count(*) >=:n)", nativeQuery=true)

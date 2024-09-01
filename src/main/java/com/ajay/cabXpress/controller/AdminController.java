@@ -34,40 +34,41 @@ public class AdminController {
 
     // DRIVER
 
-    @GetMapping("/morethan-n-booking")
-    public ResponseEntity getDriverWithMoreThanNBooking(@RequestParam int n){
-        List<DriverResponse> response = driverService.getDriverWithMoreThanNBooking(n);
+    @GetMapping("/driver-more-than-n-booking")
+    public ResponseEntity getDriverWithMoreThanNBooking(@RequestParam int driverBookingCount){
+        List<DriverResponse> response = driverService.getDriverWithMoreThanNBooking(driverBookingCount);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
 
-    @GetMapping("/age")
-    public ResponseEntity getAllDriverByAgeAboveN(@RequestParam int n){
-        List<DriverResponse> response = driverService.getAllDriverByAgeAboveN(n);
+    @GetMapping("/driver-age")
+    public ResponseEntity getAllDriverByAgeAboveN(@RequestParam int driverAge){
+        List<DriverResponse> response = driverService.getAllDriverByAgeAboveN(driverAge);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
 
-    @GetMapping("/gender")
-    public ResponseEntity getAllDriverByGender(@RequestParam Gender gender){
-        List<DriverResponse> response = driverService.getAllDriverByGender(gender);
+    @GetMapping("/driver-gender")
+    public ResponseEntity getAllDriverByGender(@RequestParam Gender driverGender){
+        List<DriverResponse> response = driverService.getAllDriverByGender(driverGender);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping("/gender-age")
-    public ResponseEntity getAllDriverByGenderAndAgeBelowN(@RequestParam Gender gender, @RequestParam int n){
-        List<DriverResponse> response = driverService.getAllDriverByGenderAndAgeBelowN(gender, n);
+
+    @GetMapping("/driver-gender-age")
+    public ResponseEntity getAllDriverByGenderAndAgeBelowN(@RequestParam Gender driverGender, @RequestParam int driverAge){
+        List<DriverResponse> response = driverService.getAllDriverByGenderAndAgeBelowN(driverGender, driverAge);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping("/cab-registered")
+    @GetMapping("/driver-cab-registered")
     public ResponseEntity getAllDriverWithCabRegistered(){
         List<DriverResponse> response = driverService.getAllDriverWithCabRegistered();
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
 
-    @GetMapping("/cab-not-registered")
+    @GetMapping("/driver-cab-not-registered")
     public ResponseEntity getAllDriverWithNoCabRegistered(){
         List<DriverResponse> response = driverService.getAllDriverWithNoCabRegistered();
         return new ResponseEntity(response, HttpStatus.OK);
@@ -77,34 +78,36 @@ public class AdminController {
     // CUSTOMER
 
 
-    @GetMapping("/registered-date")
+    @GetMapping("/customer-registered-date")
     public ResponseEntity getAllCustomerRegisteredAfterSpecificDate(@RequestParam Date date){
         List<CustomerResponse> response = customerService.getAllCustomerRegisteredAfterSpecificDate(date);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping("/more-than-n-booking")
-    public ResponseEntity getAllCustomerWithMoreThanNBooking(@RequestParam int n){
-        List<CustomerResponse> response = customerService.getAllCustomerWithMoreThanNBooking(n);
+    //not tested
+    @GetMapping("/customer-more-than-n-booking")
+    public ResponseEntity getAllCustomerWithMoreThanNBooking(@RequestParam int customerBookingCount){
+        List<CustomerResponse> response = customerService.getAllCustomerWithMoreThanNBooking(customerBookingCount);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping("/age-above")
-    public ResponseEntity getAllCustomerByAgeAboveN(@RequestParam int age){
-        List<CustomerResponse> response = customerService.getAllCustomerByAgeAboveN(age);
+    @GetMapping("/customer-age-above")
+    public ResponseEntity getAllCustomerByAgeAboveN(@RequestParam int customerAge){
+        List<CustomerResponse> response = customerService.getAllCustomerByAgeAboveN(customerAge);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
 
-    @GetMapping("/gender")
-    public ResponseEntity getAllCustomerByGender(@RequestParam Gender gender){
-        List<CustomerResponse> response = customerService.getAllCustomerByGender(gender);
+    @GetMapping("/customer-gender")
+    public ResponseEntity getAllCustomerByGender(@RequestParam Gender customerGender){
+        List<CustomerResponse> response = customerService.getAllCustomerByGender(customerGender);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping("/gender-age")
-    public ResponseEntity getAllCustomerByGenderAndAgeBelowN(@RequestParam Gender gender, @RequestParam int age){
-        List<CustomerResponse> response = customerService.getAllCustomerByGenderAndAgeBelowN(gender, age);
+
+    @GetMapping("/customer-gender-age")
+    public ResponseEntity getAllCustomerByGenderAndAgeBelowN(@RequestParam Gender customerGender, @RequestParam int customerAge){
+        List<CustomerResponse> response = customerService.getAllCustomerByGenderAndAgeBelowN(customerGender, customerAge);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 

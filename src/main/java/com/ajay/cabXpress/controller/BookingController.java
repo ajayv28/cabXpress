@@ -51,10 +51,11 @@ public class BookingController {
     }
 
     @GetMapping("/booking-id")
-    public ResponseEntity getBookingDetailWithBookingId(@RequestParam UUID bookingId){
+    public ResponseEntity getBookingDetailWithBookingId(@RequestParam String bookingId){
         BookingResponse response = bookingService.getBookingDetailWithBookingId(bookingId);
             return new ResponseEntity(response, HttpStatus.OK);
     }
+
 
     @GetMapping("/cancelled-booking")
     public ResponseEntity getAllCancelledBooking(){
@@ -86,9 +87,5 @@ public class BookingController {
         List<BookingResponse> response = bookingService.getBookingBetweenGivenDates(fromDate, toDate);
             return new ResponseEntity(response, HttpStatus.OK);
     }
-
-
-
-    
 
 }

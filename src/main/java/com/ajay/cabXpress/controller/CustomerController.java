@@ -26,14 +26,14 @@ public class CustomerController {
 
 
     @GetMapping("/all-booking")
-    public ResponseEntity getAllBookingOfCurrentCustomer(@RequestParam String email){
-        List<BookingResponse> response = customerService.getAllBookingOfCurrentCustomer(email);
+    public ResponseEntity getAllBookingOfCurrentCustomer(@RequestParam String customerEmail){
+        List<BookingResponse> response = customerService.getAllBookingOfCurrentCustomer(customerEmail);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
     @GetMapping("/last-n-booking")
-    public ResponseEntity getLastNBookingOfCurrentCustomer(@RequestParam String email, @RequestParam int n){
-        List<BookingResponse> response = customerService.getLastNBookingOfCurrentCustomer(email, n);
+    public ResponseEntity getLastNBookingOfCurrentCustomer(@RequestParam String customerEmail, @RequestParam int count){
+        List<BookingResponse> response = customerService.getLastNBookingOfCurrentCustomer(customerEmail, count);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 

@@ -78,7 +78,7 @@ public class CustomerService {
     }
 
     public List<CustomerResponse> getAllCustomerByGenderAndAgeBelowN(Gender gender, int age) {
-        List<Customer> customer = customerRepository.getAllCustomerByGenderAgeBelowN(gender, age);
+        List<Customer> customer = customerRepository.getAllCustomerByGenderAgeBelowN(gender.toString(), age);
         List<CustomerResponse> response = new ArrayList<>();
 
         for(Customer currCustomer: customer){

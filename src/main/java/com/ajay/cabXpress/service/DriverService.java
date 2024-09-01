@@ -45,7 +45,7 @@ public class DriverService {
     }
 
     public List<DriverResponse> getAllDriverByGender(Gender gender) {
-        List<Driver> driver = driverRepository.getAllDriverByGender(gender);
+        List<Driver> driver = driverRepository.getAllDriverByGender(gender.toString());
         List<DriverResponse>  response = new ArrayList<>();
 
         for(Driver currDriver : driver){
@@ -56,7 +56,7 @@ public class DriverService {
     }
 
     public List<DriverResponse> getAllDriverByGenderAndAgeBelowN(Gender gender, int n) {
-        List<Driver> driver = driverRepository.getAllDriverByGenderAndAgeBelowN(gender, n);
+        List<Driver> driver = driverRepository.getAllDriverByGenderAndAgeBelowN(gender.toString(), n);
         List<DriverResponse>  response = new ArrayList<>();
 
         for(Driver currDriver : driver){

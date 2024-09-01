@@ -21,14 +21,14 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Query(value="select * from customer where registered_on >=:date", nativeQuery=true)
     public List<Customer> getAllCustomerRegisteredAfterSpecificDate(Date date);
     
-    @Query(value="select * from customer where age >= :n", nativeQuery=true)
+    @Query(value="select * from customer where age >=:n", nativeQuery=true)
     public List<Customer> getAllCustomerByAgeAboveN(int n);
 
     public List<Customer> findByGender(Gender gender);
 
     @Query(value="select * from customer where gender =:gender and age <=:n", nativeQuery=true)
-    public List<Customer> getAllCustomerByGenderAgeBelowN(Gender gender, int n);
+    public List<Customer> getAllCustomerByGenderAgeBelowN(String gender, int n);
 
-    @Query(value = "select * from customer where customer_id in (select customer_id from booking group by customer_id having count(*) >=:n)", nativeQuery = true)
+    @Query(value ="select * from customer where id in(select customer_id from booking group by customer_id having count(*) >=:n)", nativeQuery = true)
     public List<Customer> getAllCustomerWithMoreThanNBooking(int n);
 }

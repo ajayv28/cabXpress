@@ -22,15 +22,15 @@ public class DriverController {
 
 
     @GetMapping("/all-booking")
-    public ResponseEntity getAllBookingOfCurrentDriver(@RequestParam String email){
-        List<BookingResponse> response = driverService.getAllBookingOfCurrentDriver(email);
+    public ResponseEntity getAllBookingOfCurrentDriver(@RequestParam String driverEmail){
+        List<BookingResponse> response = driverService.getAllBookingOfCurrentDriver(driverEmail);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
 
     @GetMapping("/last-n-booking")
-    public ResponseEntity getLastNBookingOfCurrentDriver(@RequestParam String email, @RequestParam int n){
-        List<BookingResponse> response = driverService.getLastNBookingOfCurrentDriver(email, n);
+    public ResponseEntity getLastNBookingOfCurrentDriver(@RequestParam String driverEmail, @RequestParam int count){
+        List<BookingResponse> response = driverService.getLastNBookingOfCurrentDriver(driverEmail, count);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 

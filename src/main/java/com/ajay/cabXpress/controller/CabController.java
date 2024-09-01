@@ -24,15 +24,18 @@ public class CabController {
     @Autowired
     DriverService driverService;
 
+
+
     @GetMapping("all-booking")
     public ResponseEntity getAllBookingOfGivenCabNo(@RequestParam String cabNo){
         List<BookingResponse> response = cabService.getAllBookingOfGivenCabNo(cabNo);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
+
     @GetMapping("/last-n-booking")
-    public ResponseEntity getLastNBookingOfGivenCabNo(@RequestParam String cabNo, int n){
-        List<BookingResponse> response = cabService.getLastNBookingOfGivenCabNo(cabNo,n);
+    public ResponseEntity getLastNBookingOfGivenCabNo(@RequestParam String cabNo, int count){
+        List<BookingResponse> response = cabService.getLastNBookingOfGivenCabNo(cabNo,count);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
@@ -41,6 +44,12 @@ public class CabController {
     public ResponseEntity makeCabUnavailable(@RequestParam String cabNo){
         CabResponse response = cabService.makeCabUnavailable(cabNo);
             return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @PutMapping("/make-available")
+    public ResponseEntity makeCabAvailable(@RequestParam String cabNo){
+        CabResponse response = cabService.makeCabAvailable(cabNo);
+        return new ResponseEntity(response, HttpStatus.OK);
     }
 
     @PutMapping("/change-fare")

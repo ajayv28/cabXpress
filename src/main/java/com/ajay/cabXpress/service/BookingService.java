@@ -78,7 +78,7 @@ public class BookingService {
         if(currCustomer==null)
             throw new CustomerNotFoundException("Customer with given email id does not exist");
 
-        Cab availableCab = cabRepository.getRandomAvailableCab();
+        Cab availableCab = cabRepository.getRandomAvailableCab(bookingRequest.getCabType().toString());
 
         if(ObjectUtils.isEmpty(availableCab))
             throw new CabNotAvailableException("Sorry currently all cabs are busy");
@@ -117,8 +117,8 @@ public class BookingService {
         driverRepository.save(currDriver);        // cab & booking gets saved as driver has cancading of both
         customerRepository.save(currCustomer);   // booking also will be saved as customer has cascading of booking
 
-        sendMailToCustomer(savedBooking);
-        sendMailToDriver(savedBooking);
+        //sendMailToCustomer(savedBooking);
+        //sendMailToDriver(savedBooking);
         
         return BookingTransformer.bookingToBookingResponse(savedBooking);
 
@@ -150,7 +150,7 @@ public class BookingService {
         return response;
     }
 
-    public BookingResponse getBookingDetailWithBookingId(UUID bookingId) {
+    public BookingResponse getBookingDetailWithBookingId(String bookingId) {
         Booking booking = bookingRepository.getBookingDetailWithBookingId(bookingId);
         return BookingTransformer.bookingToBookingResponse(booking);
     }
@@ -181,7 +181,7 @@ public class BookingService {
 
     public List<BookingResponse> getBookingWithGivenCabType(CabType cabType) {
 
-        List<Booking> booking = bookingRepository.getBookingWithGivenCabType(cabType);
+        List<Booking> booking = bookingRepository.getBookingWithGivenCabType(cabType.toString());
         List<BookingResponse> response = new ArrayList<>();
 
         for(Booking currBooking : booking){
