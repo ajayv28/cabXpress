@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -33,4 +34,13 @@ public interface DriverRepository extends JpaRepository<Driver, Integer> {
 
     @Query(value="select * from driver where id in(select driver_id from booking group by driver_id having count(*) >=:n)", nativeQuery=true)
     public List<Driver> getDriverWithMoreThanNBooking(int n);
+
+    @Query(value ="select * from driver where month(dob) = month(:todayDate) and day(dob) = day(:todayDate)", nativeQuery = true)
+    public List<Driver> getAllDriverWithTodayBirthday(Date todayDate);
+
+    @Query(value ="select * from driver where month(registeredOn) = month(:todayDate) and day(dob) = day(:todayDate)", nativeQuery = true)
+    public List<Driver> getAllDriverWithTodayAnniversary(Date todayDate);
+
+    @Query(value="select * from driver where (rating_sum/rating_count) =:rating", nativeQuery=true)
+    public List<Driver> getAllDriverByRating(int rating);
 }

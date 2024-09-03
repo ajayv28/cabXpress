@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.awt.print.Book;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +37,18 @@ public class Driver {
 
     String name;
 
+    int ratingSum;
+    int ratingCount;
+
     String age;
+
+    Date dob;
+
+    String currentAllocatedBookingId;
+
+    @CreationTimestamp
+    Date registeredOn;
+
 
     @Enumerated(EnumType.STRING)
     Gender gender;

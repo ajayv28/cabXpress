@@ -6,6 +6,7 @@ import com.ajay.cabXpress.dto.response.BookingResponse;
 import com.ajay.cabXpress.dto.response.CustomerResponse;
 import com.ajay.cabXpress.model.Booking;
 import com.ajay.cabXpress.model.Customer;
+import com.ajay.cabXpress.model.Driver;
 import com.ajay.cabXpress.repository.BookingRepository;
 import com.ajay.cabXpress.repository.CustomerRepository;
 import com.ajay.cabXpress.transformer.BookingTransformer;
@@ -108,5 +109,11 @@ public class CustomerService {
             response.add(BookingTransformer.bookingToBookingResponse(booking));
         }
         return response;
+    }
+
+    public String deleteCustomer(String customerEmail) {
+        Customer customer = customerRepository.findByEmail(customerEmail);
+        customerRepository.delete(customer);
+        return "Successfully deleted from our database";
     }
 }

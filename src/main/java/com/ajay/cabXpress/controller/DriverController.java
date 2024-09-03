@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,11 +23,7 @@ public class DriverController {
     DriverService driverService;
 
 
-    @GetMapping("/all-booking")
-    public ResponseEntity getAllBookingOfCurrentDriver(@RequestParam String driverEmail){
-        List<BookingResponse> response = driverService.getAllBookingOfCurrentDriver(driverEmail);
-            return new ResponseEntity(response, HttpStatus.OK);
-    }
+
 
 
     @GetMapping("/last-n-booking")
@@ -34,7 +32,12 @@ public class DriverController {
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-
+    //TESTING NOT DONE
+    @DeleteMapping("/delete")
+    public ResponseEntity deleteDriver(@RequestParam String driverEmail){
+        String response = driverService.deleteDriver(driverEmail);
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
     
 
 }

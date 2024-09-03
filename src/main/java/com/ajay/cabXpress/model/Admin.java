@@ -1,11 +1,8 @@
 package com.ajay.cabXpress.model;
 
 import jakarta.persistence.*;
-import jdk.jfr.Enabled;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.util.UUID;
 
 @Entity
 @Builder
@@ -14,16 +11,18 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Coupon {
+public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String couponCode;
+    @Column(unique = true, nullable = false)
+    String email;
 
-    int quantity;
+    String password;
 
-    double flatOfferPercentage;
+    String role;
 
+    String name;
 }

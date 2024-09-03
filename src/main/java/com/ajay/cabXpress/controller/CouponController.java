@@ -7,10 +7,7 @@ import jakarta.persistence.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/coupon")
@@ -24,4 +21,12 @@ public class CouponController {
         CouponResponse response = couponService.registerCoupon(couponRequest);
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
+
+    //TESTING NOT DONE
+    @DeleteMapping("/delete")
+    public ResponseEntity deleteCoupon(@RequestParam String couponCode){
+        String response = couponService.deleteCoupon(couponCode);
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
+
 }

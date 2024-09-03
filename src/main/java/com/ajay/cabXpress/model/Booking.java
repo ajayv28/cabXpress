@@ -39,6 +39,8 @@ public class Booking {
 
     double totalFare;
 
+    int tripRating;
+
     @Enumerated(EnumType.STRING)
     CabType cabType;
 

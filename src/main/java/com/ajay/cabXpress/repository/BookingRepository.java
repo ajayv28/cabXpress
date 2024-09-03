@@ -14,6 +14,8 @@ import java.util.Date;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
+    public Booking findByBookingId(String bookingId);
+
     @Query(value="select * from booking order by id desc limit :n", nativeQuery=true)
     public List<Booking> getLastNBooking(int n);
 
@@ -61,4 +63,14 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
     
     @Query(value="select * from booking where driver_id in (select driver_id from cab where cab_no =:cabNo) order by id desc limit :n ", nativeQuery = true)
     public List<Booking> getLastNBookingOfGivenCabNo(String cabNo, int n);
+
+    @Query(value="select * from booking where driver_id =:driverId order by id desc limit 1", nativeQuery = true)
+    public Booking lastBookingCompletedSuccessfully(int driverId);
+
+    @Query(value="select * from booking where booking_status='ONGOING'", nativeQuery = true)
+    public List<Booking> getAllActiveRides();
+
+
+    @Query(value="select * from booking where trip_rating =:rating", nativeQuery=true)
+    public List<Booking> getAllBookingByRating(int rating);
 }

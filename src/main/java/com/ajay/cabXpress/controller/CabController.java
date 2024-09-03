@@ -58,12 +58,20 @@ public class CabController {
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
+    //NOT TESTED
     @PutMapping("/end-trip")
     public ResponseEntity endTrip(@RequestParam String cabNo){
-        CabResponse response = cabService.endTrip(cabNo);
+        BookingResponse response = cabService.endTrip(cabNo);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
+
+    //NOT TESTED
+    @PutMapping("/start-trip")
+    public ResponseEntity startTrip(@RequestParam String cabNo){
+        BookingResponse response = cabService.startTrip(cabNo);
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
 
 
 }

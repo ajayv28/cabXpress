@@ -38,6 +38,12 @@ public class Customer {
 
     String age;
 
+    Date dob;
+
+    String currentAllocatedBookingId;
+
+    boolean customerFreeCurrently;
+
     @Enumerated(EnumType.STRING)
     Gender gender;
 

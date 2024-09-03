@@ -31,4 +31,10 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
     @Query(value ="select * from customer where id in(select customer_id from booking group by customer_id having count(*) >=:n)", nativeQuery = true)
     public List<Customer> getAllCustomerWithMoreThanNBooking(int n);
+
+    @Query(value ="select * from customer where month(dob) = month(:todayDate) and day(dob) = day(:todayDate)", nativeQuery = true)
+    public List<Customer> getAllCustomerWithTodayBirthday(Date todayDate);
+
+    @Query(value ="select * from customer where month(registeredOn) = month(:todayDate) and day(dob) = day(:todayDate)", nativeQuery = true)
+    public List<Customer> getAllCustomerWithTodayAnniversary(Date todayDate);
 }

@@ -1,5 +1,6 @@
 package com.ajay.cabXpress.repository;
 
+import com.ajay.cabXpress.model.Booking;
 import com.ajay.cabXpress.model.Cab;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,4 +13,5 @@ public interface CabRepository extends JpaRepository<Cab, Integer> {
     public Cab getRandomAvailableCab(String cabType);
 
     public Cab findByCabNo(String cabNo);
+
 }
