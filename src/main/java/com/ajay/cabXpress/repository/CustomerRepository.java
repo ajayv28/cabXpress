@@ -2,6 +2,7 @@ package com.ajay.cabXpress.repository;
 
 import com.ajay.cabXpress.Enum.Gender;
 import com.ajay.cabXpress.model.Customer;
+import com.ajay.cabXpress.model.Driver;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Query(value="select * from customer where mobile_number =:mobileNumber", nativeQuery=true)
     public Customer findByMobileNumber(long mobileNumber);
 
+    public Customer findByCurrentAllocatedBookingId(String bookingId);
 
     public Customer findByEmail(String email);
     

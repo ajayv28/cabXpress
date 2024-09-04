@@ -17,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 //import org.springframework.security.core.parameters.P;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
@@ -35,11 +37,14 @@ public class CustomerController {
     @Autowired
     BookingService bookingService;
 
+
+    //TESTED
     @PostMapping("/create-booking")
-    public ResponseEntity createBooking(@RequestBody BookingRequest bookingRequest) {
+    public ResponseEntity createBooking(@RequestBody BookingRequest bookingRequest, @AuthenticationPrincipal UserDetails userDetails) {
 
         try {
-            BookingResponse savedBooking = bookingService.createBooking(bookingRequest);
+            String customerEmail = userDetails.getUsername();
+            BookingResponse savedBooking = bookingService.createBooking(bookingRequest, customerEmail);
 
             return new ResponseEntity(savedBooking, HttpStatus.CREATED);
         }catch(CustomerNotFoundException customerNotFoundException){
@@ -49,37 +54,45 @@ public class CustomerController {
         }
     }
 
+    //TESTED
     @GetMapping("/all-booking")
-    public ResponseEntity getAllBookingOfCurrentCustomer(@RequestParam String customerEmail){
+    public ResponseEntity getAllBookingOfCurrentCustomer(@AuthenticationPrincipal UserDetails userDetails){
+        String customerEmail = userDetails.getUsername();
         List<BookingResponse> response = customerService.getAllBookingOfCurrentCustomer(customerEmail);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
+    //TESTED
     @GetMapping("/last-n-booking")
-    public ResponseEntity getLastNBookingOfCurrentCustomer(@RequestParam String customerEmail, @RequestParam int count){
+    public ResponseEntity getLastNBookingOfCurrentCustomer(@AuthenticationPrincipal UserDetails userDetails, @RequestParam int count){
+        String customerEmail = userDetails.getUsername();
         List<BookingResponse> response = customerService.getLastNBookingOfCurrentCustomer(customerEmail, count);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    //testing not done
-    @PostMapping
-    public ResponseEntity cancelRide(@RequestParam String customerEmail){
+    //TESTED
+    @PostMapping("/cancel-ride")
+    public ResponseEntity cancelRide(@AuthenticationPrincipal UserDetails userDetails){
+        String customerEmail = userDetails.getUsername();
         BookingResponse response = bookingService.cancelRide(customerEmail);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    //TESTING NOT DONE
+    //TESTED
+    @PutMapping("/rate-driver")
+    public ResponseEntity rateDriverOfLastCompletedTrip(@AuthenticationPrincipal UserDetails userDetails, @RequestParam int rating){
+        String customerEmail = userDetails.getUsername();
+        String response = customerService.rateDriverOfLastCompletedTrip(customerEmail, rating);
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+
     @DeleteMapping("/delete")
-    public ResponseEntity deleteCustomer(@RequestParam String customerEmail){
+    public ResponseEntity deleteCustomer(@AuthenticationPrincipal UserDetails userDetails){
+        String customerEmail = userDetails.getUsername();
         String response = customerService.deleteCustomer(customerEmail);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    //not tested
-    @PutMapping("/rate-driver")
-    public ResponseEntity rateDriverOfLastCompletedTrip(@RequestParam String customerEmail, @RequestParam int rating){
-        String response = driverService.rateDriverOfLastCompletedTrip(customerEmail, rating);
-        return new ResponseEntity(response, HttpStatus.OK);
-    }
 
 }

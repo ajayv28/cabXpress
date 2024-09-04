@@ -17,5 +17,4 @@ public class CabRequest {
 
     double farePerKm;
 
-    String driverEmail;
 }

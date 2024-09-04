@@ -24,5 +24,4 @@ public class BookingRequest {
 
     CabType cabType;
 
-    String customerEmail;                 // as we are not using loggedIn details to book
 }

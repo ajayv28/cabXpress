@@ -123,20 +123,6 @@ public class DriverService {
         return response;
     }
 
-    public String rateDriverOfLastCompletedTrip(String customerEmail, int rating) {
-        Driver currDriver = driverRepository.findByEmail(customerEmail);
-        int driverId = currDriver.getId();
-        Booking lastBookingCompletedSuccessfully = bookingRepository.lastBookingCompletedSuccessfully(driverId);
-        lastBookingCompletedSuccessfully.setTripRating(rating);
-
-        lastBookingCompletedSuccessfully.getDriver().setRatingSum(lastBookingCompletedSuccessfully.getDriver().getRatingSum()+rating);
-        lastBookingCompletedSuccessfully.getDriver().setRatingCount(lastBookingCompletedSuccessfully.getDriver().getRatingCount()+1);
-
-        driverRepository.save(currDriver);
-        bookingRepository.save(lastBookingCompletedSuccessfully);
-
-        return "Successfully rated your last trip";
-    }
 
     public List<DriverResponse> getAllDriverByRating(int rating) {
         List<Driver> driver = driverRepository.getAllDriverByRating(rating);

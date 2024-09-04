@@ -4,6 +4,8 @@ import com.ajay.cabXpress.Enum.Gender;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.sql.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,4 +23,6 @@ public class CustomerResponse {
     String age;
 
     Gender gender;
+
+    Date dob;
 }

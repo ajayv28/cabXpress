@@ -44,7 +44,7 @@ public class Driver {
 
     Date dob;
 
-    String currentAllocatedBookingId;
+    String currentAllocatedBookingId="";
 
     @CreationTimestamp
     Date registeredOn;

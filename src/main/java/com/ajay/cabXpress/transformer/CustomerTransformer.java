@@ -17,6 +17,7 @@ public class CustomerTransformer {
                 .name(customerRequest.getName())
                 .gender(customerRequest.getGender())
                 .email(customerRequest.getEmail())
+                .dob(customerRequest.getDob())
                 .password(passwordEncoder.encode(customerRequest.getPassword()))
                 .role("ROLE_CUSTOMER")
                 .build();
@@ -29,6 +30,7 @@ public class CustomerTransformer {
                 .gender(customer.getGender())
                 .email(customer.getEmail())
                 .name(customer.getName())
+                .dob(customer.getDob())
                 .build();
     }
 }

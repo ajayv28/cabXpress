@@ -12,6 +12,7 @@ public class CouponTransformer {
         return Coupon.builder()
                 .flatOfferPercentage(couponRequest.getFlatOfferPercentage())
                 .couponCode(String.valueOf(UUID.randomUUID()))
+                .quantity(couponRequest.getQuantity())
                 .build();
     }
 
@@ -19,6 +20,7 @@ public class CouponTransformer {
         return CouponResponse.builder()
                 .flatOfferPercentage(coupon.getFlatOfferPercentage())
                 .couponCode(coupon.getCouponCode())
+                .quantity(coupon.getQuantity())
                 .build();
     }
 }

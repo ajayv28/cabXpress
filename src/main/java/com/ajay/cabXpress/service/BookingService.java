@@ -69,12 +69,12 @@ public class BookingService {
         javaMailSender.send(simpleMailMessage);
     }
 
-    public BookingResponse createBooking(BookingRequest bookingRequest) {
+    public BookingResponse createBooking(BookingRequest bookingRequest, String customerEmail) {
 
-        Customer currCustomer = customerRepository.findByEmail(bookingRequest.getCustomerEmail());
+        Customer currCustomer = customerRepository.findByEmail(customerEmail);
 
         if(currCustomer==null)
-            throw new CustomerNotFoundException("Customer with given email id does not exist");
+            throw new CustomerNotFoundException("Customer not register with us with current logged in credentials");
 
         if(currCustomer.isCustomerFreeCurrently()==false)
             throw new CustomerEngagedWithAnotherBookingException("Already another unfinished booking exist for this customer");

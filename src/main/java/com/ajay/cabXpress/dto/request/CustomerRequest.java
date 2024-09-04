@@ -5,6 +5,8 @@ import jakarta.persistence.Column;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.sql.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,5 +25,7 @@ public class CustomerRequest {
     String age;
 
     Gender gender;
+
+    Date dob;
 
 }

@@ -16,13 +16,14 @@ public class CouponController {
     @Autowired
     CouponService couponService;
 
+    //TESTED
     @PostMapping("/register")
     public ResponseEntity registerCoupon(@RequestBody CouponRequest couponRequest){
         CouponResponse response = couponService.registerCoupon(couponRequest);
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
-    //TESTING NOT DONE
+
     @DeleteMapping("/delete")
     public ResponseEntity deleteCoupon(@RequestParam String couponCode){
         String response = couponService.deleteCoupon(couponCode);

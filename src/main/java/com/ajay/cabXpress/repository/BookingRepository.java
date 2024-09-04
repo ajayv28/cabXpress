@@ -64,8 +64,8 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
     @Query(value="select * from booking where driver_id in (select driver_id from cab where cab_no =:cabNo) order by id desc limit :n ", nativeQuery = true)
     public List<Booking> getLastNBookingOfGivenCabNo(String cabNo, int n);
 
-    @Query(value="select * from booking where driver_id =:driverId order by id desc limit 1", nativeQuery = true)
-    public Booking lastBookingCompletedSuccessfully(int driverId);
+    @Query(value="select * from booking where customer_id =:customerId order by id desc limit 1", nativeQuery = true)
+    public Booking lastBookingCompletedSuccessfully(int customerId);
 
     @Query(value="select * from booking where booking_status='ONGOING'", nativeQuery = true)
     public List<Booking> getAllActiveRides();

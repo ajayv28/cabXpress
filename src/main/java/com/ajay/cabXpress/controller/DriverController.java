@@ -23,18 +23,27 @@ public class DriverController {
     DriverService driverService;
 
 
+    //TESTED
+    @GetMapping("/all-booking")
+    public ResponseEntity getAllBookingOfCurrentDriver(@AuthenticationPrincipal UserDetails userDetails){
+        //if(userDetails != null)
+        String driverEmail = userDetails.getUsername();
+        List<BookingResponse> response = driverService.getAllBookingOfCurrentDriver(driverEmail);
+            return new ResponseEntity(response, HttpStatus.OK);
+    }
 
-
-
+    //TESTED
     @GetMapping("/last-n-booking")
-    public ResponseEntity getLastNBookingOfCurrentDriver(@RequestParam String driverEmail, @RequestParam int count){
+    public ResponseEntity getLastNBookingOfCurrentDriver(@AuthenticationPrincipal UserDetails userDetails, @RequestParam int count){
+        String driverEmail = userDetails.getUsername();
         List<BookingResponse> response = driverService.getLastNBookingOfCurrentDriver(driverEmail, count);
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    //TESTING NOT DONE
+
     @DeleteMapping("/delete")
-    public ResponseEntity deleteDriver(@RequestParam String driverEmail){
+    public ResponseEntity deleteDriver(@AuthenticationPrincipal UserDetails userDetails){
+        String driverEmail = userDetails.getUsername();
         String response = driverService.deleteDriver(driverEmail);
         return new ResponseEntity(response, HttpStatus.OK);
     }

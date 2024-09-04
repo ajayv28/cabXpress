@@ -17,6 +17,7 @@ public class DriverTransformer {
                 .age(driverRequest.getAge())
                 .gender(driverRequest.getGender())
                 .email(driverRequest.getEmail())
+                .dob(driverRequest.getDob())
                 .password(passwordEncoder.encode(driverRequest.getPassword()))
                 .role("ROLE_DRIVER")
                 .build();
@@ -28,6 +29,7 @@ public class DriverTransformer {
                 .email(driver.getEmail())
                 .name(driver.getName())
                 .age(driver.getAge())
+                .dob(driver.getDob())
                 .gender(driver.getGender())
                 .build();
     }

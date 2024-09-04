@@ -40,9 +40,9 @@ public class Customer {
 
     Date dob;
 
-    String currentAllocatedBookingId;
+    String currentAllocatedBookingId="";
 
-    boolean customerFreeCurrently;
+    boolean customerFreeCurrently=true;
 
     @Enumerated(EnumType.STRING)
     Gender gender;

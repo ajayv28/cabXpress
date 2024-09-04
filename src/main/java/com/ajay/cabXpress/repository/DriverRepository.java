@@ -16,6 +16,8 @@ public interface DriverRepository extends JpaRepository<Driver, Integer> {
 
     public Driver findByEmail(String email);
 
+    public Driver findByCurrentAllocatedBookingId(String bookingId);
+
     @Query(value="select * from driver where age >=:n", nativeQuery=true)
     public List<Driver> getAllDriverByAgeAboveN(int n);
 

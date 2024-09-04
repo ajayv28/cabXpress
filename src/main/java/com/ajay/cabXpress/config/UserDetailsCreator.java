@@ -1,5 +1,6 @@
 package com.ajay.cabXpress.config;
 
+import com.ajay.cabXpress.model.Admin;
 import com.ajay.cabXpress.model.Customer;
 import com.ajay.cabXpress.model.Driver;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,6 +38,17 @@ public class UserDetailsCreator implements UserDetails {
             this.password = driver.getPassword();
             this.authorities = new ArrayList<>();
             String roles[] = driver.getRole().split(",");
+
+            for(String role : roles){
+                SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(role);
+                authorities.add(simpleGrantedAuthority);
+            }
+        }else if(object instanceof Admin){
+            Admin admin = (Admin) object;
+            this.username = admin.getEmail();
+            this.password = admin.getPassword();
+            this.authorities = new ArrayList<>();
+            String roles[] = admin.getRole().split(",");
 
             for(String role : roles){
                 SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(role);

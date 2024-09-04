@@ -17,4 +17,5 @@ public class CouponResponse {
 
     double flatOfferPercentage;
 
+    int quantity;
 }

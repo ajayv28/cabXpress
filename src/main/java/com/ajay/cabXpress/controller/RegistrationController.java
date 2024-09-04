@@ -30,6 +30,7 @@ public class RegistrationController {
     @Autowired
     CabService cabService;
 
+    //TESTED
     @PostMapping("/customer")
     public ResponseEntity registerCustomer(@RequestBody CustomerRequest customerRequest){
 
@@ -39,24 +40,11 @@ public class RegistrationController {
 
     }
 
+    //TESTED
     @PostMapping("/driver")
     public ResponseEntity registerDriver(@RequestBody DriverRequest driverRequest){
         DriverResponse savedDriver = driverService.registerDriver(driverRequest);
         return new ResponseEntity(savedDriver, HttpStatus.CREATED);
-    }
-
-
-    @PostMapping("/cab")
-    public ResponseEntity registerCab(@RequestBody CabRequest cabRequest){
-
-        try {
-            CabResponse savedCab = cabService.registerCab(cabRequest);
-            return new ResponseEntity(savedCab, HttpStatus.CREATED);
-        }catch(DriverNotFoundException de){
-            return new ResponseEntity(de.getMessage(), HttpStatus.BAD_REQUEST);
-        }catch(Exception e){
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
     }
 
 }

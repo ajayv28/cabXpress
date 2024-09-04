@@ -12,4 +12,6 @@ public class CouponRequest {
 
     double flatOfferPercentage;
 
+    int quantity;
+
 }

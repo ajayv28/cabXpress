@@ -5,6 +5,8 @@ import jakarta.persistence.Column;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.sql.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,4 +25,6 @@ public class DriverRequest {
     String age;
 
     Gender gender;
+
+    Date dob;
 }
