@@ -126,8 +126,8 @@ public class BookingService {
         driverRepository.save(currDriver);        // cab & booking gets saved as driver has cancading of both
         customerRepository.save(currCustomer);   // booking also will be saved as customer has cascading of booking
 
-        //sendMailToCustomer(savedBooking);
-        //sendMailToDriver(savedBooking);
+        sendMailToCustomer(savedBooking);
+        sendMailToDriver(savedBooking);
         
         return BookingTransformer.bookingToBookingResponse(savedBooking);
 
@@ -260,7 +260,6 @@ public class BookingService {
 
         currCab.setAvailability(true);
 
-    //cascading automatically updates the changes in booking entity in our List<Booking> at Driver and Customer entity
 
         Booking savedBooking = bookingRepository.save(currBooking);
         driverRepository.save(currDriver);

@@ -18,6 +18,7 @@ import com.ajay.cabXpress.repository.CustomerRepository;
 import com.ajay.cabXpress.repository.DriverRepository;
 import com.ajay.cabXpress.transformer.BookingTransformer;
 import com.ajay.cabXpress.transformer.CabTransformer;
+import jakarta.transaction.Transactional;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -179,8 +180,8 @@ public class CabService {
 
         driverRepository.save(currDriver);
         customerRepository.save(currCustomer);
-        //sendEndOfTripMailToDriver(savedBooking);
-        //sendEndOfTripMailToCustomer(savedBooking);
+        sendEndOfTripMailToDriver(savedBooking);
+        sendEndOfTripMailToCustomer(savedBooking);
 
         return BookingTransformer.bookingToBookingResponse(savedBooking);
     }
@@ -211,8 +212,13 @@ public class CabService {
         return BookingTransformer.bookingToBookingResponse(savedBooking);
     }
 
-    public String deleteCab(String cabNo) {
-        Cab cab = cabRepository.findByCabNo(cabNo);
+
+    public String deleteCab(Driver driver) {
+
+        Cab cab = driver.getCab();
+        driver.setCab(null);
+        cab.setDriver(null);
+        driverRepository.save(driver);
         cabRepository.delete(cab);
         return "Successfully deleted from our database";
     }

@@ -53,11 +53,11 @@ public class Driver {
     @Enumerated(EnumType.STRING)
     Gender gender;
 
-    @OneToOne(mappedBy = "driver", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "driver", cascade = CascadeType.ALL)     //DELETING DRIVER, WILL DELETE CAB ALSO
     Cab cab;
 
-    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)   //DELETING DRIVER, WILL DELETE BOOKING ALSO
+    @JsonIgnore                                                   //If we dont want to delete booking, then traverse all List<booking> from driver, and make forignkey value as null. then remove cascading from here
     List<Booking> bookings = new ArrayList<>();
 
 }

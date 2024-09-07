@@ -40,7 +40,7 @@ public class DriverController {
             return new ResponseEntity(response, HttpStatus.OK);
     }
 
-
+    //TESTED
     @DeleteMapping("/delete")
     public ResponseEntity deleteDriver(@AuthenticationPrincipal UserDetails userDetails){
         String driverEmail = userDetails.getUsername();

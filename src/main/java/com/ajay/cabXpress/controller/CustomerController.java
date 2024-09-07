@@ -87,6 +87,7 @@ public class CustomerController {
     }
 
 
+    //TESTED
     @DeleteMapping("/delete")
     public ResponseEntity deleteCustomer(@AuthenticationPrincipal UserDetails userDetails){
         String customerEmail = userDetails.getUsername();

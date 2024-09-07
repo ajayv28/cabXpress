@@ -6,6 +6,9 @@ import com.ajay.cabXpress.dto.response.BookingResponse;
 import com.ajay.cabXpress.dto.response.CabResponse;
 import com.ajay.cabXpress.dto.response.CustomerResponse;
 import com.ajay.cabXpress.dto.response.DriverResponse;
+import com.ajay.cabXpress.model.Cab;
+import com.ajay.cabXpress.model.Driver;
+import com.ajay.cabXpress.repository.DriverRepository;
 import com.ajay.cabXpress.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +39,9 @@ public class AdminController {
 
     @Autowired
     BookingService bookingService;
+
+    @Autowired
+    DriverRepository driverRepository;
 
 
     @GetMapping("daily-task")
@@ -96,21 +102,21 @@ public class AdminController {
     }
 
 
-
+    //TESTED
     @GetMapping("/driver-by-rating")
     public ResponseEntity getAllDriverByRating(@RequestParam int rating){
         List<DriverResponse> response = driverService.getAllDriverByRating(rating);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-
+    //TESTED
     @GetMapping("/driver-all-booking")
     public ResponseEntity getAllBookingOfDriver(@RequestParam String driverEmail){
         List<BookingResponse> response = driverService.getAllBookingOfCurrentDriver(driverEmail);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-
+    //TESTED
     @GetMapping("/driver-last-n-booking")
     public ResponseEntity getLastNBookingOfDriver(@RequestParam String driverEmail, @RequestParam int count){
         List<BookingResponse> response = driverService.getLastNBookingOfCurrentDriver(driverEmail, count);
@@ -156,12 +162,14 @@ public class AdminController {
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
+    //TESTED
     @GetMapping("/customer-all-booking")
     public ResponseEntity getAllBookingOfCustomer(@RequestParam String customerEmail){
         List<BookingResponse> response = customerService.getAllBookingOfCurrentCustomer(customerEmail);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
+    //TESTED
     @GetMapping("/customer-last-n-booking")
     public ResponseEntity getLastNBookingOfCustomer(@RequestParam String customerEmail, @RequestParam int count){
         List<BookingResponse> response = customerService.getLastNBookingOfCurrentCustomer(customerEmail, count);
@@ -172,6 +180,7 @@ public class AdminController {
         // ********************** BOOKINGS ***************************
 
 
+    //TESTED
     @GetMapping("/active-rides")
     public ResponseEntity getAllActiveRides(){
         List<BookingResponse> response = bookingService.getAllActiveRides();
@@ -179,6 +188,7 @@ public class AdminController {
     }
 
 
+    //TESTED
     @GetMapping("/booking-by-rating")
     public ResponseEntity getAllBookingByRating(@RequestParam int rating){
         List<BookingResponse> response = bookingService.getAllBookingByRating(rating);
@@ -288,6 +298,7 @@ public class AdminController {
          // *************  DELETE  **************************
 
 
+    //TESTED
     @DeleteMapping("/delete-driver")
     public ResponseEntity deleteDriver(@AuthenticationPrincipal UserDetails userDetails){
         String driverEmail = userDetails.getUsername();
@@ -296,6 +307,7 @@ public class AdminController {
     }
 
 
+    //TESTED
     @DeleteMapping("/delete-customer")
     public ResponseEntity deleteCustomer(@AuthenticationPrincipal UserDetails userDetails){
         String customerEmail = userDetails.getUsername();
@@ -304,4 +316,11 @@ public class AdminController {
     }
 
 
+    //TESTED
+    @DeleteMapping("/delete")
+    public ResponseEntity deleteCab(@AuthenticationPrincipal UserDetails userDetails){
+        Driver currDriver = driverRepository.findByEmail(userDetails.getUsername());
+        String response = cabService.deleteCab(currDriver);
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
 }

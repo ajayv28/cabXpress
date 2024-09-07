@@ -114,11 +114,11 @@ public class CabController {
     }
 
 
+    //TESTED
     @DeleteMapping("/delete")
     public ResponseEntity deleteCab(@AuthenticationPrincipal UserDetails userDetails){
         Driver currDriver = driverRepository.findByEmail(userDetails.getUsername());
-        String cabNo = currDriver.getCab().getCabNo();
-        String response = cabService.deleteCab(cabNo);
+        String response = cabService.deleteCab(currDriver);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 

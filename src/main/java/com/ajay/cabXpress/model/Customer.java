@@ -50,8 +50,8 @@ public class Customer {
     @CreationTimestamp
     Date registeredOn;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)      //DELETING CUSTOMER, WILL DELETE BOOKING ALSO
+    @JsonIgnore                       //If we dont want to delete booking, then traverse all List<booking> from driver, and make forignkey value as null. then remove cascading from here
     List<Booking> bookings = new ArrayList<>();
 
 
